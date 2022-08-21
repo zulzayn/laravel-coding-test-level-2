@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
@@ -15,24 +16,24 @@ class TestDataSeeder extends Seeder
      */
     public function run()
     {
-        UserService::store([
-            'id'       => Uuid::uuid4()->getHex(),
+        User::create([
+            'id'       => 'e289b633f3a944179cdeaf7e3891f5e0',
             'username' => 'admin',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'role_id'  => 1,
         ]);
 
-        UserService::store([
-            'id'       => Uuid::uuid4()->getHex(),
+        User::create([
+            'id'       => '95dc381d979a48928b4ed8e4bed902e2',
             'username' => 'product_owner',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'role_id'  => 2,
         ]);
 
-        UserService::store([
-            'id'       => Uuid::uuid4()->getHex(),
+        User::create([
+            'id'       => '631ddd759d04487a868afdd1b7ad0cae',
             'username' => 'team_member',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'role_id'  => 3,
         ]);
     }
