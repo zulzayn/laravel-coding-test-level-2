@@ -11,7 +11,21 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-  
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+
+        $projects = Project::where('name', 'like', '%' . $request->q . '%')
+                            ->orderBy(''.$request->sortBy ? $request->sortBy : 'name'.'' , ''.$request->sortDirection ? $request->sortDirection : 'ASC'.'')
+                            ->paginate($request->pageSize ? $request->pageSize : 3);
+
+        return ProjectResource::collection($projects);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
